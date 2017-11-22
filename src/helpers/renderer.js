@@ -14,7 +14,7 @@ export default (req, store, context) => {
                 <div>{renderRoutes(Routes)}</div>
             </StaticRouter>
         </Provider>
-    ); //First {} is for variable, second {} is for empty object. context is required.
+    );
     
     const helmet = Helmet.renderStatic();
 

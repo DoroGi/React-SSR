@@ -1,9 +1,9 @@
 import React from 'react';
 import App from './App';
-import HomePage from './pages/HomePage';
-import UsersListPage from './pages/UsersListPage';
-import NotFoundPage from './pages/NotFoundPage';
-import AdminsListPage from './pages/AdminsListPage';
+import HomePage from './scenes/Home/HomePage';
+import UsersListPage from './scenes/UsersList/UsersListPage';
+import NotFoundPage from './scenes/NotFound/NotFoundPage';
+import AdminsListPage from './scenes/AdminsList/AdminsListPage';
 
 export default [
     {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions';
+import { fetchUsers } from '../../services/ListAPI/listActions';
 import { Helmet } from 'react-helmet';
 
 class UsersList extends Component {
     componentDidMount() {
         this.props.fetchUsers();
     }
+
 
     renderUsers() {
         return this.props.users.map(user => {
