@@ -1,21 +1,18 @@
 const webpackNodeExternals = require('webpack-node-externals');
 
 const babelConf = {
-    test: /\.js?$/,
-    loader: 'babel-loader',
-    exclude: /node_modules/,
-    options: {
-        presets: [
-            'react',
-            'stage-0',
-            ['env', { targets: { browsers: ['last 2 versions'] }}]
-        ]
-    }
+    rules: [
+        {
+            test: /\.js?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+        }
+    ]
 }
 
 module.exports = [
     {
-        //Client configuration
+        name: "client configuration",
         entry: './src/client/client.js',
 
         output: {
@@ -23,10 +20,10 @@ module.exports = [
             path: __dirname + '/public'
         },
 
-        module: { rules: [babelConf] }
+        module: babelConf
     },
     {
-        //Server configuration
+        name: "server configuration",
         target: 'node',
 
         entry: './src/index.js',
@@ -36,7 +33,7 @@ module.exports = [
             path: __dirname + '/build'
         },
 
-        module: { rules: [babelConf] },
+        module: babelConf,
 
         externals: [webpackNodeExternals()]
     }

@@ -4,9 +4,11 @@
     "repository": "https://github.com/DoroGi/React-SSR.git",
     "version": "2.0.0",
     "description": "Server side rendering project",
+    "engines": { "node": ">=8.6 <9" },
     "main": "index.js",
     "scripts": {
-      "dev": "run-p dev:*",
+      "dev": "npm-run-all checkNode -p dev:*",
+      "checkNode": "check-node-version --package",
       "dev:build": "webpack --watch",
       "dev:watch-and-restart-server": "nodemon --watch build --exec node build/bundle.js"
     },
@@ -35,7 +37,7 @@
       "babel-loader": "7.1.2",
       "babel-preset-env": "1.6.1",
       "babel-preset-react": "6.24.1",
-      "babel-preset-stage-0": "6.24.1",
+      "check-node-version": "3.0.0",
       "webpack": "3.8.1",
       "webpack-node-externals": "1.6.0"
     }
