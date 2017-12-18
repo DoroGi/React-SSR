@@ -1,15 +1,22 @@
+const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin')
 const webpackNodeExternals = require('webpack-node-externals')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 const commonConf = {
-  module: {
-    rules: [{
-        test: /\.js?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-    }]
-  }
+    module: {
+        rules: [{
+            test: /\.tsx?$/,
+            loader: 'awesome-typescript-loader',
+            exclude: /node_modules/
+        },
+        {
+            enforce: "pre", test: /\.js$/, loader: "source-map-loader"
+        }]
+    },
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"]
+    }
 }
 
 const byEnvironment = env => {
@@ -32,7 +39,7 @@ const byEnvironment = env => {
 const byTarget = target => {
     const config = {
         client: {
-            entry: './src/client/client.js',
+            entry: './src/client/client.tsx',
             output: {
                 filename: 'bundle.js',
                 path: __dirname + '/public'
@@ -40,7 +47,7 @@ const byTarget = target => {
         },
         server: {
             target: 'node',
-            entry: './src/index.js',
+            entry: './src/index.ts',
             output: {
                 filename: 'bundle.js',
                 path: __dirname + '/build'

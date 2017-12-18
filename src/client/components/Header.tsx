@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const Header = ({ user }) => {
     const authButton = user ? (
         <a href="/api/logout">Logout</a>
     ) : (
         <a href="/api/auth/google">Login</a>
-    );
+    )
 
     return (
         <nav>
@@ -26,11 +26,11 @@ const Header = ({ user }) => {
                 </ul>
             </div>
         </nav>
-    );
-};
-
-function mapStateToProps({ user }) {
-    return { user };
+    )
 }
 
-export default connect(mapStateToProps)(Header);
+function mapStateToProps({ user }) {
+    return { user }
+}
+
+export default connect(mapStateToProps)(Header)

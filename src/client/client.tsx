@@ -1,5 +1,3 @@
-// Startup point for the client side application
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,9 +10,7 @@ import axios from 'axios';
 import Routes from './Routes';
 import reducers from './services/reducers';
 
-const axiosInstance = axios.create({
-    baseURL: '/api'
-});
+const axiosInstance = axios.create({ baseURL: '/api' });
 
 const store = createStore(
     reducers,

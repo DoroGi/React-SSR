@@ -14,6 +14,5 @@ export default req => {
         {},
         applyMiddleware(thunk.withExtraArgument(axiosInstance))
     );    
-
     return store;
 };
