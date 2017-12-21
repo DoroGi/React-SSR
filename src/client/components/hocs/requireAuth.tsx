@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { HOC } from '../../../helpers/UtilTypes'
 
- function autorized (ChildComponent: React.ComponentClass<any> | React.StatelessComponent<any>): React.ComponentClass<any> {
-    class RequireAuth extends Component<any> {
+const autorized: HOC = ChildComponent => {
+    class RequireAuth extends Component<{user: any},{}> {
         render() {
             switch (this.props.user) {
                 case false:
@@ -20,7 +21,7 @@ import { Redirect } from 'react-router-dom'
         return { user }
     }
 
-    return connect(mapStateToProps)(RequireAuth);
+    return connect(mapStateToProps)(RequireAuth)
 }
 
 export default autorized

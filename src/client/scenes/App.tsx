@@ -1,9 +1,7 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
-import Header from './components/Header'
-import { fetchCurrentUser } from './services/UserAPI/userActions'
-
-const loadData = ({ dispatch }) => dispatch(fetchCurrentUser())
+import Header from '../components/Header'
+import { fetchCurrentUser } from '../services/UserAPI/userActions'
 
 const App: React.SFC<any> = ({ route }) => {
     return (
@@ -14,4 +12,7 @@ const App: React.SFC<any> = ({ route }) => {
     )
 }
 
-export default App
+export default {
+    component: App,
+    loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
+}

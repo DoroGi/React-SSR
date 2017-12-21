@@ -42,7 +42,7 @@ const byTarget = target => {
             entry: './src/client/client.tsx',
             output: {
                 filename: 'bundle.js',
-                path: __dirname + '/public'
+                path: __dirname + '/assets'
             }
         },
         server: {

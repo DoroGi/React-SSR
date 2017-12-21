@@ -1,3 +1,3 @@
 interface Window {
-    INITIAL_STATE: string;
+    INITIAL_STATE: string
 }

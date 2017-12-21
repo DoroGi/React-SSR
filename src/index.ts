@@ -2,7 +2,8 @@ import express from 'express'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
-import { renderer, createStore, fetchComponentData, matchRouteComponents } from './helpers'
+import { renderer, createStore } from './helpers'
+import { Context, DataRoute } from './helpers/UtilTypes';
 
 const app = express()
 
@@ -15,15 +16,27 @@ app.use(
         } //ignore this proxy setting, it's just to make this specific API work.
     })
 )
-app.use(express.static('public')) //public is accessible from the outside, here the client will get the client bundle!
+
+app.use(express.static('assets')) //assets is accessible from the outside, here the client will get the client bundle!
 app.get('*', (req, res) => {
     const store = createStore(req)
-    const components = matchRouteComponents(req.path, Routes)
     
-    fetchComponentData(store.dispatch, components).then(() => {
-        const HTML = renderer(req.path, store, Routes)
-        res.type("text/html; charset=UTF-8")
-        res.end(HTML)
+    const dataPromises = matchRoutes(Routes, req.path)
+    .map(({ route }) => {
+        const dataRoute = <DataRoute>route
+        return dataRoute.loadData ? dataRoute.loadData(store) : null
+    })
+    .map(promise => {
+        if (promise) { return new Promise((resolve, reject) => { promise.then(resolve).catch(resolve) })}
+    })
+
+    Promise.all(dataPromises).then(() => {
+        const context: Context = {}
+        const content = renderer(req, store, context)
+
+        if (context.url) return res.redirect(301, context.url)
+        if (context.notFound) res.status(404)
+        res.send(content)
     })
 })
 

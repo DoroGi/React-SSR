@@ -8,7 +8,7 @@ export const fetchUsers = () => async (dispatch, getState, api) => {
     })
 }
 
-export const FETCH_ADMINS = 'fetch_admins'
+export const FETCH_ADMINS: string = 'fetch_admins'
 export const fetchAdmins = () => async (dispatch, getState, api) => {
     const res = await api.get('/admins')
 

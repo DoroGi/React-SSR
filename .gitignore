@@ -1,4 +1,4 @@
 build/
-public/
+assets/
 node_modules/
 *.log

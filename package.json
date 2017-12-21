@@ -44,7 +44,7 @@
     "cross-env": "5.1.1",
     "express": "4.16.2",
     "express-http-proxy": "1.1.0",
-    "nodemon": "1.13.3",
+    "nodemon": "1.14.1",
     "redux-devtools-extension": "2.13.2",
     "source-map-loader": "0.2.3",
     "typescript": "2.6.2",

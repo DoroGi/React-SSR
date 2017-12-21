@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../../services/ListAPI/listActions'
+import { Persons } from '../../../helpers/UtilTypes'
 import { Helmet } from 'react-helmet'
 
 interface IUserListProps {
     fetchUsers(): any,
-    users: Array<{id:string, name: string}>
+    users: Persons
 }
 
 class UsersList extends Component<IUserListProps,{}> {
@@ -39,8 +40,15 @@ class UsersList extends Component<IUserListProps,{}> {
     }
 }
 
-function mapStateToProps({ users }) {
-    return { users }
+function mapStateToProps(state) {
+    return { users: state.users }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(UsersList)
+function loadData(store) {
+    return store.dispatch(fetchUsers())
+}
+
+export default {
+    loadData,
+    component: connect(mapStateToProps, { fetchUsers })(UsersList)
+}

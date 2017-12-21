@@ -7,7 +7,7 @@ import serialize from 'serialize-javascript'
 import { Helmet } from 'react-helmet'
 import Routes from '../client/Routes'
 
-export default (path, store, context) => {
+export default ({ path }, store, context) => {
     const content = renderToString(
         <Provider store={store}>
             <StaticRouter location={path} context={context}> 

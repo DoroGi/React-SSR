@@ -9,4 +9,4 @@ const HomePage: React.SFC = () => {
     )
 }
 
-export default HomePage
+export default { component: HomePage }

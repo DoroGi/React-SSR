@@ -5,4 +5,4 @@ const NotFoundPage: React.SFC<any> = ({ staticContext = {} }) => {
     return <h1>Ooops, route not found.</h1>
 }
 
-export default NotFoundPage
+export default { component: NotFoundPage }

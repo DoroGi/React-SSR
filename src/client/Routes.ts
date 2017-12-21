@@ -1,28 +1,29 @@
-import React from 'react';
-import App from './App';
-import HomePage from './scenes/Home/HomePage';
-import UsersListPage from './scenes/UsersList/UsersListPage';
-import NotFoundPage from './scenes/NotFound/NotFoundPage';
-import AdminsListPage from './scenes/AdminsList/AdminsListPage';
+import React from 'react'
+import App from './scenes/App'
+import HomePage from './scenes/Home/HomePage'
+import UsersListPage from './scenes/UsersList/UsersListPage'
+import NotFoundPage from './scenes/NotFound/NotFoundPage'
+import AdminsListPage from './scenes/AdminsList/AdminsListPage'
+import { DataRoute } from '../helpers/UtilTypes';
 
 export default [{
-    component: App,
+    ...App,
     routes: [
         {
+            ...HomePage,
             path: '/',
-            exact: true,
-            component: HomePage
+            exact: true
         },
         {
-            path: '/admins',            
-            component: AdminsListPage
+            ...AdminsListPage,            
+            path: '/admins'
         },
         {
-            path: '/users',            
-            component: UsersListPage
+            ...UsersListPage,            
+            path: '/users'
         },
         {
-            component: NotFoundPage
+            ...NotFoundPage
         }
     ]
-}]
+}] as DataRoute[]
