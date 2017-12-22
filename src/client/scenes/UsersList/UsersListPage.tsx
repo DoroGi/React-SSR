@@ -10,7 +10,7 @@ interface IProps extends IStoreProps {
     readonly users: Persons
 }
 
-class UsersList extends Component<IProps,{}> {
+class UsersList extends Component<IProps> {
     componentDidMount() {
         this.props.fetchUsers()
     }

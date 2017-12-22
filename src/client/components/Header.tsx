@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { SFC } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCurrentUser } from '../services/UserAPI/userActions'
 import IStoreProps from '../../helpers/store/IStoreState'
 
-const Header: React.SFC<IStoreProps> = ({ user }) => {
+const Header: SFC<IStoreProps> = ({ user }) => {
     const authButton: JSX.Element = user ? (
         <a href="/api/logout">Logout</a>
     ) : (

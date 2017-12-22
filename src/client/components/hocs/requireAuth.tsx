@@ -5,7 +5,7 @@ import { HOC } from '../../../helpers/UtilTypes'
 import IStoreProps from '../../../helpers/store/IStoreState'
 
 const autorized: HOC = ChildComponent => {
-    class RequireAuth extends Component<IStoreProps,{}> {
+    class RequireAuth extends Component<IStoreProps> {
         render() {
             switch (this.props.user) {
                 case false:

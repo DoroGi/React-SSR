@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SFC } from 'react'
 import { renderRoutes, RouteConfig } from 'react-router-config'
 import Header from '../components/Header'
 import { fetchCurrentUser } from '../services/UserAPI/userActions'
@@ -6,7 +6,7 @@ import { DataRoute } from '../../helpers/UtilTypes';
 
 type IProps = { route: RouteConfig }
 
-const App: React.SFC<IProps> = ({ route }) => {
+const App: SFC<IProps> = ({ route }) => {
     return (
         <div>
             <Header />

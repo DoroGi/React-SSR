@@ -7,6 +7,7 @@ import { AxiosInstance, AxiosResponse } from 'axios';
 export type HOC = (InnerComponent: React.ComponentClass<any>) => React.ComponentClass<any>
 export type ActionCreator = () => (dispatch: Dispatch<IStoreState>, getState?: () => IStoreState, api?: AxiosInstance) => Promise<void>
 export type Action = { type: string, payload: AxiosResponse }
+export type Reducer = (state: IStoreState, action: Action) => any
 export type Context = { notFound?: boolean, url?: string }
 
 //To be used when props just accepts state

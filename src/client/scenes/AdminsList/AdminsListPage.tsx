@@ -10,7 +10,7 @@ interface IProps extends IStoreProps {
     readonly admins: Persons
 }
 
-class AdminsListPage extends Component<IProps,{}> {
+class AdminsListPage extends Component<IProps> {
     componentDidMount() {
         this.props.fetchAdmins()
     }

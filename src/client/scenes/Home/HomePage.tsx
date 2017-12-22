@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { SFC } from 'react'
 import { DataRoute } from '../../../helpers/UtilTypes';
 
-const HomePage: React.SFC = () => {
+const HomePage: SFC = () => {
     return (
         <div className="center-align" style={{marginTop: '200px' }}>
             <h3>Welcome</h3>
