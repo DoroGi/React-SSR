@@ -1,9 +1,12 @@
 import React from 'react'
-import { renderRoutes } from 'react-router-config'
+import { renderRoutes, RouteConfig } from 'react-router-config'
 import Header from '../components/Header'
 import { fetchCurrentUser } from '../services/UserAPI/userActions'
+import { DataRoute } from '../../helpers/UtilTypes';
 
-const App: React.SFC<any> = ({ route }) => {
+type IProps = { route: RouteConfig }
+
+const App: React.SFC<IProps> = ({ route }) => {
     return (
         <div>
             <Header />
@@ -15,4 +18,4 @@ const App: React.SFC<any> = ({ route }) => {
 export default {
     component: App,
     loadData: ({ dispatch }) => dispatch(fetchCurrentUser())
-}
+} as DataRoute

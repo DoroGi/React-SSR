@@ -10,13 +10,13 @@ import axios from 'axios'
 import Routes from './Routes'
 import reducers from './services/reducers'
 
-const axiosInstance = axios.create({ baseURL: '/api' });
+const axiosInstance = axios.create({ baseURL: '/api' })
 
 const store = createStore(
     reducers,
     window.INITIAL_STATE,
     composeWithDevTools(applyMiddleware(thunk.withExtraArgument(axiosInstance)))
-);
+)
 
 ReactDOM.hydrate(
     <Provider store={store}>
@@ -25,4 +25,4 @@ ReactDOM.hydrate(
         </BrowserRouter>
     </Provider>,
     document.querySelector('#root')
-);
+)

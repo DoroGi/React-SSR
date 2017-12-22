@@ -1,4 +1,5 @@
 import React from 'react'
+import { DataRoute } from '../../../helpers/UtilTypes';
 
 const HomePage: React.SFC = () => {
     return (
@@ -9,4 +10,4 @@ const HomePage: React.SFC = () => {
     )
 }
 
-export default { component: HomePage }
+export default { component: HomePage } as DataRoute

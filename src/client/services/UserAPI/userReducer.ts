@@ -1,6 +1,6 @@
-import { FETCH_CURRENT_USER } from './userActions';
+import { FETCH_CURRENT_USER } from '../actions'
 
-export default function(state = null, action) {
+export const userReducer = (state = null, action) => {
     switch (action.type) {
         case FETCH_CURRENT_USER:
             return action.payload.data || false

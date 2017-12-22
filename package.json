@@ -5,7 +5,7 @@
   "version": "3.0.0",
   "description": "Server side rendering project",
   "engines": {
-    "node": ">=8.6 <9"
+    "node": ">=8.6"
   },
   "main": "index.ts",
   "scripts": {

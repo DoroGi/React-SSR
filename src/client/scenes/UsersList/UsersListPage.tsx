@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../../services/ListAPI/listActions'
-import { Persons } from '../../../helpers/UtilTypes'
+import { Persons, IStoreProps, DataRoute, ActionCreator } from '../../../helpers/UtilTypes'
 import { Helmet } from 'react-helmet'
+import { Dispatch } from 'redux';
 
-interface IUserListProps {
-    fetchUsers(): any,
-    users: Persons
+interface IProps extends IStoreProps {
+    readonly fetchUsers: ActionCreator,
+    readonly users: Persons
 }
 
-class UsersList extends Component<IUserListProps,{}> {
+class UsersList extends Component<IProps,{}> {
     componentDidMount() {
         this.props.fetchUsers()
     }
@@ -40,15 +41,9 @@ class UsersList extends Component<IUserListProps,{}> {
     }
 }
 
-function mapStateToProps(state) {
-    return { users: state.users }
-}
-
-function loadData(store) {
-    return store.dispatch(fetchUsers())
-}
+const mapStateToProps = ({ users }) => { return { users } }
 
 export default {
-    loadData,
-    component: connect(mapStateToProps, { fetchUsers })(UsersList)
-}
+    component: connect(mapStateToProps, { fetchUsers })(UsersList),
+    loadData: ({ dispatch }) => dispatch(fetchUsers())    
+} as DataRoute
