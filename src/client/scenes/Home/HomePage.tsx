@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { SFC } from 'react'
+import { DataRoute } from '../../../helpers/UtilTypes';
 
-const Home = () => {
+const HomePage: SFC = () => {
     return (
         <div className="center-align" style={{marginTop: '200px' }}>
             <h3>Welcome</h3>
             <p>Check out these awesome features</p>
         </div>
-    );
-};
+    )
+}
 
-export default { component: Home };
+export default { component: HomePage } as DataRoute

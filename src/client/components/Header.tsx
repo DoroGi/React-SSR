@@ -1,13 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { SFC } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchCurrentUser } from '../services/UserAPI/userActions'
+import IStoreProps from '../../helpers/store/IStoreState'
 
-const Header = ({ user }) => {
-    const authButton = user ? (
+const Header: SFC<IStoreProps> = ({ user }) => {
+    const authButton: JSX.Element = user ? (
         <a href="/api/logout">Logout</a>
     ) : (
         <a href="/api/auth/google">Login</a>
-    );
+    )
 
     return (
         <nav>
@@ -26,11 +28,9 @@ const Header = ({ user }) => {
                 </ul>
             </div>
         </nav>
-    );
-};
-
-function mapStateToProps({ user }) {
-    return { user };
+    )
 }
 
-export default connect(mapStateToProps)(Header);
+const mapStateToProps = ({ user }) => { return { user } }
+
+export default connect(mapStateToProps)(Header)
