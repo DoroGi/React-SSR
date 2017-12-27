@@ -5,9 +5,9 @@ import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
 import { Helmet } from 'react-helmet'
-import Routes from '../client/Routes'
-import IStoreState from './store/IStoreState'
-import { Context, Request, Store } from './allTypes'
+import Routes from './client/Routes'
+import IStoreState from './helpers/store/IStoreState'
+import { Context, Request, Store } from './helpers/allTypes'
 
 type RendererType = (req: Request, store: Store<IStoreState>, context: Context) => string
 
@@ -34,7 +34,8 @@ const renderer: RendererType = ({ path }, store, context) => {
             <script>
                 window.INITIAL_STATE = ${serialize(store.getState())}
             </script>
-            <script src="bundle.js"></script>
+            <script src="vendor.js"></script>            
+            <script src="client.js"></script>
         </body>
     </html>
     `

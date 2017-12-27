@@ -1,5 +1,5 @@
-const path = require('path');
 const DefinePlugin = require('webpack/lib/DefinePlugin')
+const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const webpackNodeExternals = require('webpack-node-externals')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
@@ -20,7 +20,7 @@ const commonConf = {
 }
 
 const byEnvironment = env => {
-    const config = {
+    const envConfigs = {
         development: {
             devtool: 'inline-source-map',
             plugins: [ new DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')})]
@@ -33,23 +33,48 @@ const byEnvironment = env => {
             ]
         }
     }
-    return config[env] || {}
+    return envConfigs[env] || {}
 }
 
 const byTarget = target => {
     const config = {
         client: {
-            entry: './src/client/client.tsx',
+            name: 'Client',
+            entry: {
+                client: ['./src/client/client.tsx'],
+                vendor: [
+                    'axios',
+                    'react',
+                    'react-dom',
+                    'react-helmet',
+                    'react-redux',
+                    'react-router',
+                    'react-router-config',
+                    'react-router-dom',
+                    'redux',
+                    'redux-thunk',
+                    'serialize-javascript'
+                ]
+            },
             output: {
-                filename: 'bundle.js',
+                filename: 'client.js',
                 path: __dirname + '/assets'
-            }
+            },
+            plugins: [
+                new CommonsChunkPlugin({
+                    name: 'vendor',
+                    filename: 'vendor.[chunkhash].js',
+                    minChunks: Infinity
+                }),
+                new webpack.NamedModulesPlugin(),
+            ]
         },
         server: {
+            name: 'Server',
             target: 'node',
             entry: './src/index.ts',
             output: {
-                filename: 'bundle.js',
+                filename: 'server.js',
                 path: __dirname + '/build'
             },
             externals: [webpackNodeExternals()]

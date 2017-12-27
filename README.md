@@ -18,6 +18,7 @@ I created this repo starting from https://github.com/StephenGrider/ReactSSRCasts
 * Add aliases... it's embarassing
 * code chunking
 * sass using css modules
+* should component update to avoid double rendering
 * performance webpack plugin
 * Jest
 * Babel AFTER Typescript

@@ -2,8 +2,9 @@ import express from 'express'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
-import { renderer, createStore } from './helpers'
-import { Context, DataRoute, Store, IStoreState } from './helpers/allTypes';
+import { createStore } from './helpers'
+import { Context, DataRoute, Store, IStoreState } from './helpers/allTypes'
+import renderer from './renderer'
 
 const app = express()
 
