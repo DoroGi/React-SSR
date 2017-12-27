@@ -1,4 +1,5 @@
 import express from 'express'
+import compression from 'compression'
 import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
@@ -7,6 +8,8 @@ import { Context, DataRoute, Store, IStoreState } from './helpers/allTypes'
 import renderer from './renderer'
 
 const app = express()
+
+app.use(compression())
 
 app.use(
     '/api',

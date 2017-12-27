@@ -15,14 +15,16 @@ I created this repo starting from https://github.com/StephenGrider/ReactSSRCasts
 * ~~Improved project structure~~
 * ~~Unified and improved webpack.config~~
 * ~~Typescript~~
-* Add aliases... it's embarassing
-* code chunking
+* Add aliases... it's embarassing (eventually)
+* ~~code chunking~~
+* ~~gzip~~
 * sass using css modules
 * should component update to avoid double rendering
 * performance webpack plugin
 * Jest
+* Apollo + GraphQL ?
 * Babel AFTER Typescript
 * strict Typescript
 * a violent TSLint
-* Apollo + GraphQL ?
+* prefetch other bundles?
 * a violent editorconfig
