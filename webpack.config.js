@@ -63,10 +63,9 @@ const byTarget = target => {
             plugins: [
                 new CommonsChunkPlugin({
                     name: 'vendor',
-                    filename: 'vendor.[chunkhash].js',
+                    filename: 'vendor.js',
                     minChunks: Infinity
-                }),
-                new webpack.NamedModulesPlugin(),
+                })
             ]
         },
         server: {
