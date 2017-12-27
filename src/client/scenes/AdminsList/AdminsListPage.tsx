@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAdmins } from '../../services/ListAPI/listActions'
 import requireAuth from '../../components/hocs/requireAuth'
-import IStoreProps from '../../../helpers/store/IStoreState'
-import { Persons, DataRoute, ActionCreator } from '../../../helpers/UtilTypes';
+import { IStoreProps, IStoreState, Persons, DataRoute, ActionCreator, Action, Store } from '../../../helpers/allTypes'
 
 interface IProps extends IStoreProps {
     readonly fetchAdmins: ActionCreator,
@@ -31,9 +30,9 @@ class AdminsListPage extends Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ admins }) => { return { admins } }
+const mapStateToProps = ({ admins }: IStoreProps) => { return { admins } }
 
 export default {
     component: connect(mapStateToProps, { fetchAdmins })(requireAuth(AdminsListPage)),
-    loadData: ({ dispatch }) => dispatch(fetchAdmins())
+    loadData: ({ dispatch }: Store<IStoreState>) => dispatch(fetchAdmins())
 } as DataRoute

@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import { DataRoute } from '../../../helpers/UtilTypes';
+import { DataRoute } from '../../../helpers/allTypes';
 
 const HomePage: SFC = () => {
     return (

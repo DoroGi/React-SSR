@@ -6,8 +6,12 @@ import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
 import { Helmet } from 'react-helmet'
 import Routes from '../client/Routes'
+import IStoreState from './store/IStoreState'
+import { Context, Request, Store } from './allTypes'
 
-export default ({ path }, store, context) => {
+type RendererType = (req: Request, store: Store<IStoreState>, context: Context) => string
+
+const renderer: RendererType = ({ path }, store, context) => {
     const content = renderToString(
         <Provider store={store}>
             <StaticRouter location={path} context={context}> 
@@ -35,3 +39,5 @@ export default ({ path }, store, context) => {
     </html>
     `
 }
+
+export default renderer

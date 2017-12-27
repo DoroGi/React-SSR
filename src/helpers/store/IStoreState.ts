@@ -1,4 +1,4 @@
-import { Persons, GoogleUser } from '../UtilTypes'
+import { Persons, GoogleUser } from '../allTypes'
 
 export default interface IStoreState {
     readonly user: GoogleUser | boolean,

@@ -1,7 +1,5 @@
+import { Action, GoogleUser, Reducer } from '../../../helpers/allTypes'
 import { FETCH_CURRENT_USER } from '../actions'
-import { Action, GoogleUser } from '../../../helpers/UtilTypes'
-import IStoreState from '../../../helpers/store/IStoreState'
-import { Reducer } from 'redux'
 
 export const userReducer: Reducer<GoogleUser> = (state = null, action) => {
     switch (action.type) {

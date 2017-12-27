@@ -1,6 +1,5 @@
-import { ActionCreator, Action, Persons } from '../../../helpers/UtilTypes'
+import { ActionCreator, Action, Persons, AxiosResponse } from '../../../helpers/allTypes'
 import { FETCH_USERS, FETCH_ADMINS } from '../actions'
-import { AxiosResponse } from 'axios'
 
 export const fetchUsers: ActionCreator = () => async (dispatch, getState, api) => {
     const res: AxiosResponse = await api.get('/users')

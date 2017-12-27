@@ -2,7 +2,7 @@ import React, { SFC } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCurrentUser } from '../services/UserAPI/userActions'
-import IStoreProps from '../../helpers/store/IStoreState'
+import { GoogleUser, IStoreProps } from '../../helpers/allTypes'
 
 const Header: SFC<IStoreProps> = ({ user }) => {
     const authButton: JSX.Element = user ? (
@@ -31,6 +31,6 @@ const Header: SFC<IStoreProps> = ({ user }) => {
     )
 }
 
-const mapStateToProps = ({ user }) => { return { user } }
+const mapStateToProps = ({ user }: IStoreProps) => { return { user } }
 
 export default connect(mapStateToProps)(Header)

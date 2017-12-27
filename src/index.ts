@@ -3,7 +3,7 @@ import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
 import { renderer, createStore } from './helpers'
-import { Context, DataRoute } from './helpers/UtilTypes';
+import { Context, DataRoute, Store, IStoreState } from './helpers/allTypes';
 
 const app = express()
 
@@ -19,16 +19,15 @@ app.use(
 
 app.use(express.static('assets')) //assets is accessible from the outside, here the client will get the client bundle!
 app.get('*', (req, res) => {
-    const store = createStore(req)
+    const store = createStore(req) as Store<IStoreState>
     
-    const dataPromises = matchRoutes(Routes, req.path)
+    const dataPromises: Array<Promise<{}>> = matchRoutes(Routes, req.path)
     .map(({ route }) => {
         const dataRoute = <DataRoute>route
         return dataRoute.loadData ? dataRoute.loadData(store) : null
     })
-    .map(promise => {
-        if (promise) { return new Promise((resolve, reject) => { promise.then(resolve).catch(resolve) })}
-    })
+    .filter(promise => promise!==null)
+    .map(promise => new Promise((resolve, reject) => { promise.then(resolve).catch(resolve)}))
 
     Promise.all(dataPromises).then(() => {
         const context: Context = {}
