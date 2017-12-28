@@ -13,6 +13,10 @@ class AdminsListPage extends Component<IProps> {
     componentDidMount() {
         this.props.fetchAdmins()
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.admins !== nextProps.admins
+    }    
     
     renderAdmins() {
         return this.props.admins.map(admin => {

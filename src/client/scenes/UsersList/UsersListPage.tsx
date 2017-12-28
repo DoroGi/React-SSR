@@ -14,6 +14,10 @@ class UsersList extends Component<IProps> {
         this.props.fetchUsers()
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.users !== nextProps.users
+    }   
+
     renderUsers() {
         return this.props.users.map(user => {
             return <li key={user.id}>{user.name}</li>
