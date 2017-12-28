@@ -19,11 +19,14 @@ I created this repo starting from https://github.com/StephenGrider/ReactSSRCasts
 * ~~code chunking~~
 * ~~gzip~~
 * sass using css modules
-* should component update to avoid double rendering
+* avoid double API call server + client
+* purecomponents
 * performance webpack plugin
 * Jest
+* PM2
 * Apollo + GraphQL ?
 * Babel AFTER Typescript
+* install babel-plugin-transform-react-constant-elements and babel-plugin-transform-react-inline-elements 
 * strict Typescript
 * a violent TSLint
 * prefetch other bundles?
