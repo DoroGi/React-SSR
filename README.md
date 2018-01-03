@@ -1,6 +1,6 @@
-# React-SSR
+# Vortigaunt
 An example WebApp that implements server-side rendering of React  
-I created this repo starting from https://github.com/StephenGrider/ReactSSRCasts.
+Inpired by https://github.com/StephenGrider/ReactSSRCasts and https://github.com/barbar/vortigern
 
 ## How to use:
 
@@ -21,7 +21,6 @@ This library uses the following libraries and tools:
 - [React-Redux](https://github.com/reactjs/react-redux) to use React-Redux bindings.
 
 #### Utilities
-- [Isomorphic Fetch](https://github.com/matthew-andrews/isomorphic-fetch) with [ES6-Promise](https://github.com/stefanpenner/es6-promise) for using fetch api on both client & server side.
 - [Redux Thunk](https://github.com/gaearon/redux-thunk) for dispatching async actions.
 - [React Helmet](https://github.com/nfl/react-helmet)
 
@@ -31,6 +30,7 @@ This library uses the following libraries and tools:
   - [Isomorphic Style Loader](https://github.com/kriasoft/isomorphic-style-loader) for loading styles on server-side.
   - [Style Loader](https://github.com/webpack/style-loader)
   - [CSS Loader](https://github.com/webpack/css-loader)
+  - [PostCSS Loader](https://github.com/postcss/postcss)
   - [Sourcemap Loader](https://github.com/webpack/source-map-loader)
 
 #### Dev & Prod Server
@@ -38,23 +38,19 @@ This library uses the following libraries and tools:
 - [Compression](https://github.com/expressjs/compression) for gzip compression
 
 #### Developer Experience
-- [Typings](https://github.com/typings/typings) for installing type definitions of external libraries.
 - [Redux DevTools](https://github.com/gaearon/redux-devtools)
 
 ## Next Steps
 
-* PostCSS
 * Add aliases... it's embarassing (eventually)
-* sass using css modules
 * avoid double API call server + client
 * purecomponents
 * performance webpack plugin
 * Jest
-* PM2
 * Apollo + GraphQL ?
 * Storybook
-* Babel AFTER Typescript
 * install babel-plugin-transform-react-constant-elements and babel-plugin-transform-react-inline-elements 
+* PM2
 * strict Typescript
 * a violent TSLint
 * prefetch other bundles?
