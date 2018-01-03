@@ -1,7 +1,10 @@
 const DefinePlugin = require('webpack/lib/DefinePlugin')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const { CheckerPlugin } = require('awesome-typescript-loader')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
+const commonPlugins = [ new CheckerPlugin() ]
 
 const envPlugins = {
     analyse: [
@@ -30,5 +33,5 @@ const targetPlugins = {
 module.exports = (env, target) => {
     const pluginsByEnv = envPlugins[env] || []
     const pluginsByTarget = targetPlugins[target] || []
-    return [...pluginsByEnv, ...pluginsByTarget]
+    return [...commonPlugins, ...pluginsByEnv, ...pluginsByTarget]
 }

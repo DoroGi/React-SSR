@@ -1,4 +1,4 @@
-import { Action, Persons, Reducer } from '../../../helpers/allTypes'
+import { Persons, Reducer } from '../../../helpers/allTypes'
 import { FETCH_USERS, FETCH_ADMINS } from '../actions'
 
 export const adminsReducer: Reducer<Persons> = (state = [], action) => {

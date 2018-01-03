@@ -1,9 +1,10 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
-import { Dispatch } from 'redux'
+import { Store, Dispatch } from 'redux'
 import { RouteConfig } from 'react-router-config'
 import IStoreState from './store/IStoreState'
 
 // Server
+import { Request } from 'express'
 export { Request } from 'express'
 export { AxiosResponse } from 'axios'
 
@@ -18,6 +19,7 @@ export interface DataRoute extends RouteConfig { readonly loadData?: any, readon
 export { Store, Dispatch, Reducer } from 'redux'
 export { default as IStoreState } from './store/IStoreState'
 export type IStoreProps = IStoreState
+export type StoreBuilder = (req: Request) => Store<{}>
 export type Action = { readonly type: string, readonly payload: AxiosResponse }
 export type ActionCreator = () => (dispatch: Dispatch<Action>, getState: () => IStoreState, api: AxiosInstance) => Promise<void>
 

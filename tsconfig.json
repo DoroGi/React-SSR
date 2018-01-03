@@ -1,19 +1,26 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",                    // path to output directory
-        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
         "jsx": "react",
+        "moduleResolution": "Node",
+        "outDir": "./dist/",                    // path to output directory
+        "target": "ES5",                        // specify ECMAScript target version 
+        "module": "ES6",                        // specifiy module code generation
         "sourceMap": true,                      // allow sourcemap support
+        "allowSyntheticDefaultImports": true,
         "strictNullChecks": true,
         "noImplicitReturns": true,
         "noImplicitThis": true,
-        //"noImplicitAny": true,
-        "module": "ES6",                        // specifiy module code generation
-        "moduleResolution": "Node",
-        "target": "ES5"                         // specify ECMAScript target version 
+        "noUnusedParameters": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        //"strictFunctionTypes": true,
         //"strict": true
     },
-    "include": [
-        "./src/"
-    ]
+    "include": [ "./src/" ],
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true,
+        "useBabel": true
+    }
 }

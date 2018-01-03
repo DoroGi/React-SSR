@@ -1,4 +1,4 @@
-import { Action, GoogleUser, Reducer } from '../../../helpers/allTypes'
+import { GoogleUser, Reducer } from '../../../helpers/allTypes'
 import { FETCH_CURRENT_USER } from '../actions'
 
 export const userReducer: Reducer<GoogleUser> = (state = null, action) => {

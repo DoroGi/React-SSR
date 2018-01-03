@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAdmins } from '../../services/ListAPI/listActions'
 import requireAuth from '../../components/hocs/requireAuth'
-import { IStoreProps, IStoreState, Persons, DataRoute, ActionCreator, Action, Store } from '../../../helpers/allTypes'
+import { IStoreProps, IStoreState, Persons, DataRoute, ActionCreator, Store } from '../../../helpers/allTypes'
 
 interface IProps extends IStoreProps {
     readonly fetchAdmins: ActionCreator,
@@ -14,7 +14,7 @@ class AdminsListPage extends Component<IProps> {
         this.props.fetchAdmins()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps: IProps) {
         return this.props.admins !== nextProps.admins
     }    
     

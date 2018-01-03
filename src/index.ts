@@ -12,12 +12,12 @@ const app = express()
 app.use(compression())
 
 app.use(
-    '/api',
+    '/api', //ignore this proxy setting, it's just to make this specific API work.
     proxy('http://react-ssr-api.herokuapp.com', {
-        proxyReqOptDecorator(opts) {
+        proxyReqOptDecorator(opts: any) {
             opts.headers['x-forwarded-host'] = 'localhost:3000'
             return opts
-        } //ignore this proxy setting, it's just to make this specific API work.
+        }
     })
 )
 
@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
         return dataRoute.loadData ? dataRoute.loadData(store) : null
     })
     .filter(promise => promise!==null)
-    .map(promise => new Promise((resolve, reject) => { promise.then(resolve).catch(resolve)}))
+    .map(promise => new Promise(resolve => { promise.then(resolve).catch(resolve)}))
 
     Promise.all(dataPromises).then(() => {
         const context: Context = {}

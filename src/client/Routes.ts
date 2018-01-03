@@ -1,4 +1,3 @@
-import React from 'react'
 import App from './scenes/App'
 import HomePage from './scenes/Home/HomePage'
 import UsersListPage from './scenes/UsersList/UsersListPage'

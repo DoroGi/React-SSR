@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../../services/ListAPI/listActions'
-import { Store, Dispatch, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '../../../helpers/allTypes'
+import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '../../../helpers/allTypes'
 import { Helmet } from 'react-helmet'
 
 interface IProps extends IStoreProps {
@@ -14,7 +14,7 @@ class UsersList extends Component<IProps> {
         this.props.fetchUsers()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps: IProps) {
         return this.props.users !== nextProps.users
     }   
 
@@ -44,7 +44,7 @@ class UsersList extends Component<IProps> {
     }
 }
 
-const mapStateToProps = ({ users }: IStoreProps) => { return { users } }
+const mapStateToProps = ({ users }: IStoreProps) => ({ users })
 
 export default {
     component: connect(mapStateToProps, { fetchUsers })(UsersList),

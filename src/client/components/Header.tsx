@@ -1,8 +1,7 @@
 import React, { SFC } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchCurrentUser } from '../services/UserAPI/userActions'
-import { GoogleUser, IStoreProps } from '../../helpers/allTypes'
+import { IStoreProps } from '../../helpers/allTypes'
 
 const Header: SFC<IStoreProps> = ({ user }) => {
     const authButton: JSX.Element = user ? (
