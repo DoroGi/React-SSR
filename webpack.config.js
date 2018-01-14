@@ -2,7 +2,14 @@ const webpackNodeExternals = require('webpack-node-externals')
 const plugins = require('./webpack.plugins')
 const modules = require('./webpack.modules')
 
-const commonConf = { resolve: { extensions: [".ts", ".tsx", ".js"] } }
+const commonConf = {
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"]
+    },
+    node: {
+        fs: 'empty'
+    }
+ }
 const envConfigs = {
     development: { devtool: 'inline-source-map' },
     production: { devtool: 'source-map' }
@@ -14,6 +21,7 @@ const targetConfigs = {
             client: ['./src/client/client.tsx'],
             vendor: [
                 'axios',
+                'isomorphic-style-loader',
                 'react',
                 'react-dom',
                 'react-helmet',
@@ -23,7 +31,8 @@ const targetConfigs = {
                 'react-router-dom',
                 'redux',
                 'redux-thunk',
-                'serialize-javascript'
+                'serialize-javascript',
+                'style-loader'
             ]
         },
         output: {
@@ -42,8 +51,6 @@ const targetConfigs = {
         externals: [webpackNodeExternals()]
     }
 }
-
-
 
 const createConf = target => {
     

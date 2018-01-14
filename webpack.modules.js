@@ -1,3 +1,6 @@
+const path = require('path')
+const postCSSConfig = require('./postcss.config')
+
 const styleLoader = { loader: 'style-loader'}
 const isomorphicStyleLoader = { loader: 'isomorphic-style-loader' }
 const sassLoader = { loader: 'sass-loader' }
@@ -27,14 +30,36 @@ const commonModules = [
 const targetModules = {
     client: [
         {
-            test: /\.scss$/,
-            use: [ styleLoader, cssLoader, sassLoader ]
+            test: /\.css$/,
+            include: path.resolve('./src/client'),
+            use: [
+                'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        importLoaders: 1,
+                        localIdentName: '[local]___[hash:base64:5]'
+                    }
+                },
+                'postcss-loader'
+            ]
         }
     ],
     server: [
         {
-            test: /\.scss$/,
-            use: [ isomorphicStyleLoader, cssLoader, sassLoader ]
+            test: /\.css$/,
+            loaders: [
+                'isomorphic-style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                        importLoaders: 1,
+                        localIdentName: '[local]___[hash:base64:5]'
+                    }
+                }
+            ]
         }
     ]
 }

@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
+        "lib": ["es6", "dom"],
         "jsx": "react",
         "moduleResolution": "Node",
         "outDir": "./dist/",                    // path to output directory

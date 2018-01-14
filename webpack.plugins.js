@@ -9,6 +9,7 @@ const commonPlugins = [ new CheckerPlugin() ]
 const envPlugins = {
     analyse: [
         new BundleAnalyzerPlugin({analyzerMode: 'static'}),
+        new UglifyJSPlugin({ sourceMap: true }),
         new DefinePlugin({'process.env.NODE_ENV': JSON.stringify('production')})
     ],
     development: [

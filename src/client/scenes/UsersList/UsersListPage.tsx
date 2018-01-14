@@ -4,6 +4,8 @@ import { fetchUsers } from '../../services/ListAPI/listActions'
 import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '../../../helpers/allTypes'
 import { Helmet } from 'react-helmet'
 
+const style = require('./style.css')
+
 interface IProps extends IStoreProps {
     readonly fetchUsers: ActionCreator,
     readonly users: Persons
@@ -38,7 +40,7 @@ class UsersList extends Component<IProps> {
             <div>
                 {this.head()}
                 Here's a big list of users:
-                <ul>{this.renderUsers()}</ul>
+                <ul className={style.personsList}>{this.renderUsers()}</ul>
             </div>
         )
     }
