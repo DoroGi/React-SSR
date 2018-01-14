@@ -44,7 +44,6 @@ This library uses the following libraries and tools:
 
 * Add aliases... it's embarassing (eventually)
 * avoid double API call server + client
-* purecomponents
 * performance webpack plugin
 * Jest
 * Apollo + GraphQL ?

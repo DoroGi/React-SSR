@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchAdmins } from '../../services/ListAPI/listActions'
 import requireAuth from '../../components/hocs/requireAuth'
@@ -9,14 +9,10 @@ interface IProps extends IStoreProps {
     readonly admins: Persons
 }
 
-class AdminsListPage extends Component<IProps> {
+class AdminsListPage extends PureComponent<IProps> {
     componentDidMount() {
         this.props.fetchAdmins()
     }
-
-    shouldComponentUpdate(nextProps: IProps) {
-        return this.props.admins !== nextProps.admins
-    }    
     
     renderAdmins() {
         return this.props.admins.map(admin => {

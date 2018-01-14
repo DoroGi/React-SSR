@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../../services/ListAPI/listActions'
 import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '../../../helpers/allTypes'
@@ -11,7 +11,7 @@ interface IProps extends IStoreProps {
     readonly users: Persons
 }
 
-class UsersList extends Component<IProps> {
+class UsersList extends PureComponent<IProps> {
     componentDidMount() {
         this.props.fetchUsers()
     }

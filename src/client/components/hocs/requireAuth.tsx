@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { HOC, IStoreProps } from '../../../helpers/allTypes'
 
 const autorized: HOC = ChildComponent => {
-    class RequireAuth extends Component<IStoreProps> {
+    class RequireAuth extends PureComponent<IStoreProps> {
         render() {
             switch (this.props.user) {
                 case false:

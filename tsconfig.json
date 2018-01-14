@@ -4,7 +4,6 @@
         "lib": ["es6", "dom"],
         "jsx": "react",
         "moduleResolution": "Node",
-        "outDir": "./dist/",                    // path to output directory
         "target": "ES5",                        // specify ECMAScript target version 
         "module": "ES6",                        // specifiy module code generation
         "sourceMap": true,                      // allow sourcemap support
