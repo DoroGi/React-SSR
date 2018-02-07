@@ -6,8 +6,8 @@ import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
 import { Helmet } from 'react-helmet'
 import Routes from './client/Routes'
-import IStoreState from './helpers/store/IStoreState'
-import { Context, Request, Store } from './helpers/allTypes'
+import IStoreState from '@helpers/store/IStoreState'
+import { Context, Request, Store } from '@types'
 
 type RendererType = (req: Request, store: Store<IStoreState>, context: Context) => string
 
@@ -21,13 +21,13 @@ const renderer: RendererType = ({ path }, store, context) => {
     )
     
     const helmet = Helmet.renderStatic()
+//    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     return `
     <html>
         <head>
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         </head>
         <body>
             <div id="root">${content}</div>

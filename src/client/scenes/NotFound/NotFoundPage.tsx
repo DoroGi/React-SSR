@@ -1,5 +1,5 @@
 import React, { SFC } from 'react'
-import { Context, DataRoute } from '../../../helpers/allTypes'
+import { Context, DataRoute } from '@types'
 
 type IProps = { staticContext: Context }
 

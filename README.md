@@ -42,7 +42,6 @@ This library uses the following libraries and tools:
 
 ## Next Steps
 
-* Add aliases... it's embarassing (eventually)
 * avoid double API call server + client
 * performance webpack plugin
 * Jest

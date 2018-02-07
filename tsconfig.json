@@ -1,6 +1,11 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
+        "paths": {
+            "@helpers/*": [ "src/helpers/*" ],
+            "@types": [ "src/helpers/allTypes" ],
+            "@services/*": ["src/client/services/*"]
+        },
         "lib": ["es6", "dom"],
         "jsx": "react",
         "moduleResolution": "Node",
@@ -18,7 +23,7 @@
         //"strictFunctionTypes": true,
         //"strict": true
     },
-    "include": [ "./src/" ],
+    "include": [ "src" ],
     "awesomeTypescriptLoaderOptions": {
         "useCache": true,
         "useBabel": true

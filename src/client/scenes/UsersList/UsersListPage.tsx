@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '../../services/ListAPI/listActions'
-import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '../../../helpers/allTypes'
+import { fetchUsers } from '@services/ListAPI/listActions'
+import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '@types'
 import { Helmet } from 'react-helmet'
 
-const style = require('./style.css')
+const s = require('./style.css')
 
 interface IProps extends IStoreProps {
     readonly fetchUsers: ActionCreator,
@@ -40,7 +40,7 @@ class UsersList extends PureComponent<IProps> {
             <div>
                 {this.head()}
                 Here's a big list of users:
-                <ul className={style.personsList}>{this.renderUsers()}</ul>
+                <ul className={s.personsList}>{this.renderUsers()}</ul>
             </div>
         )
     }

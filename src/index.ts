@@ -4,7 +4,7 @@ import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
 import { createStore } from './helpers'
-import { Context, DataRoute, Store, IStoreState } from './helpers/allTypes'
+import { Context, DataRoute, Store, IStoreState } from '@types'
 import renderer from './renderer'
 
 const app = express()

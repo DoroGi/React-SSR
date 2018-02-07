@@ -1,4 +1,4 @@
-import { ActionCreator, Action, AxiosResponse } from '../../../helpers/allTypes'
+import { ActionCreator, Action, AxiosResponse } from '@types'
 import { FETCH_USERS, FETCH_ADMINS } from '../actions'
 
 export const fetchUsers: ActionCreator = () => async (dispatch, _getState, api) => {

@@ -1,8 +1,8 @@
 import React, { SFC } from 'react'
 import { renderRoutes, RouteConfig } from 'react-router-config'
 import Header from '../components/Header'
-import { fetchCurrentUser } from '../services/UserAPI/userActions'
-import { Store, IStoreState, DataRoute } from '../../helpers/allTypes';
+import { fetchCurrentUser } from '@services/UserAPI/userActions'
+import { Store, IStoreState, DataRoute } from '@types';
 
 type IProps = { route: RouteConfig }
 

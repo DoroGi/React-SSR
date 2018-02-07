@@ -1,7 +1,9 @@
 import React, { SFC } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { IStoreProps } from '../../helpers/allTypes'
+import { IStoreProps } from '@types'
+
+const s = require('./style.css')
 
 const Header: SFC<IStoreProps> = ({ user }) => {
     const authButton: JSX.Element = user ? (
@@ -12,11 +14,11 @@ const Header: SFC<IStoreProps> = ({ user }) => {
 
     return (
         <nav>
-            <div className="nav-wrapper">
-                <Link to="/" className="brand-logo">
-                React SSR
+            <div className={s.navWrapper}>
+                <Link to="/" className={s.brandLogo}>
+                Vortigaunt
                 </Link>
-                <ul className="right">
+                <ul className={s.right}>
                     <li>
                         <Link to="/users">Users</Link>
                     </li>

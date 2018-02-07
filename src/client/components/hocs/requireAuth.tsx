@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { HOC, IStoreProps } from '../../../helpers/allTypes'
+import { HOC, IStoreProps } from '@types'
 
 const autorized: HOC = ChildComponent => {
     class RequireAuth extends PureComponent<IStoreProps> {

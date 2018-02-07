@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import axios from 'axios'
-import reducers from '../../client/services/reducers'
-import { StoreBuilder } from '../allTypes';
+import reducers from '@services/reducers'
+import { StoreBuilder } from '@types';
 
 const createStoreWithMiddleware: StoreBuilder = req => {
     const axiosInstance = axios.create({

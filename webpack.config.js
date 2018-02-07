@@ -1,10 +1,16 @@
 const webpackNodeExternals = require('webpack-node-externals')
 const plugins = require('./webpack.plugins')
 const modules = require('./webpack.modules')
+const path = require('path')
 
 const commonConf = {
     resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: [".ts", ".tsx", ".js"],
+        alias: {
+            '@helpers': path.resolve(__dirname, 'src/helpers'),
+            '@types': path.resolve(__dirname, 'src/helpers/allTypes'),
+            '@services': path.resolve(__dirname, 'src/client/services')
+        }
     },
     node: {
         fs: 'empty'
