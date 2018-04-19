@@ -64,7 +64,7 @@ const targetModules = {
     ]
 }
 
-module.exports = (env, target) => {
+module.exports = target => {
     const modulesByTarget = targetModules[target] || []
     return [...commonModules, ...modulesByTarget]
 }

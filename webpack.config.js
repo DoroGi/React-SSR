@@ -1,5 +1,5 @@
+const { CheckerPlugin } = require('awesome-typescript-loader')
 const webpackNodeExternals = require('webpack-node-externals')
-const plugins = require('./webpack.plugins')
 const modules = require('./webpack.modules')
 const path = require('path')
 
@@ -16,10 +16,6 @@ const commonConf = {
         fs: 'empty'
     }
  }
-const envConfigs = {
-    development: { devtool: 'inline-source-map' },
-    production: { devtool: 'source-map' }
-}
 const targetConfigs = {
     client: {
         name: 'Client',
@@ -60,15 +56,16 @@ const targetConfigs = {
 
 const createConf = target => {
     
-    const byEnvironment = env => envConfigs[env] || {}
     const byTarget = target => targetConfigs[target] || {}
     
     return {
     ...commonConf,
-    ...byEnvironment(process.env.NODE_ENV),
     ...byTarget(target),
-    plugins: plugins(process.env.NODE_ENV, target),
-    module: { rules: modules(process.env.NODE_ENV, target) }
+    plugins: [
+        //new BundleAnalyzerPlugin({analyzerMode: 'static'}),
+        new CheckerPlugin()
+    ],
+    module: { rules: modules(target) }
 }}
 
 module.exports = ['client', 'server'].map(createConf)
