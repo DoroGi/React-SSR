@@ -1,46 +1,55 @@
 import express from 'express'
 import compression from 'compression'
-import { matchRoutes } from 'react-router-config'
+import { matchRoutes, MatchedRoute } from 'react-router-config'
 import proxy from 'express-http-proxy'
 import Routes from './client/Routes'
 import { createStore } from './helpers'
 import { Context, DataRoute, Store, IStoreState } from '@types'
 import renderer from './renderer'
 
-const app = express()
+const proxyOptions = {
+    proxyReqOptDecorator(opts: any) {
+        opts.headers['x-forwarded-host'] = 'localhost:3000'
+        return opts
+    }
+}
 
-app.use(compression())
+type DataFetcher = (store: Store<IStoreState>) => (route: MatchedRoute<{}>) => any
+const getPrefetchFunctions: DataFetcher = (store) => ({ route }) => {
+    const dataRoute = <DataRoute>route
+    return dataRoute.loadData ? dataRoute.loadData(store) : null
+}
 
-app.use(
-    '/api', //ignore this proxy setting, it's just to make this specific API work.
-    proxy('http://react-ssr-api.herokuapp.com', {
-        proxyReqOptDecorator(opts: any) {
-            opts.headers['x-forwarded-host'] = 'localhost:3000'
-            return opts
-        }
-    })
-)
+type PromiseFilter = (promise: Promise<{}>) => boolean
+const componentThatDoesNotNeedData: PromiseFilter = promise => promise!==null
 
-app.use(express.static('assets')) //assets is accessible from the outside, here the client will get the client bundle!
-app.get('*', (req, res) => {
+type PromiseWrapper = (promise: Promise<{}>) => Promise<{}>
+const wrapAllPromisesInAPromise: PromiseWrapper = promise => new Promise(resolve => { promise.then(resolve).catch(resolve)})
+
+type PromiseGetter = (req: express.Request, store: Store<IStoreState>) => Promise<{}>[]
+const getDataPromises: PromiseGetter = (req, store) =>
+    matchRoutes(Routes, req.path)
+    .map(getPrefetchFunctions(store))
+    .filter(componentThatDoesNotNeedData)
+    .map(wrapAllPromisesInAPromise)
+
+const handleRequestWithReactRouter = (req: express.Request, res: express.Response) => {
     const store = createStore(req) as Store<IStoreState>
-    
-    const dataPromises: Array<Promise<{}>> = matchRoutes(Routes, req.path)
-    .map(({ route }) => {
-        const dataRoute = <DataRoute>route
-        return dataRoute.loadData ? dataRoute.loadData(store) : null
-    })
-    .filter(promise => promise!==null)
-    .map(promise => new Promise(resolve => { promise.then(resolve).catch(resolve)}))
+    const dataPromises = getDataPromises(req, store)
 
     Promise.all(dataPromises).then(() => {
         const context: Context = {}
-        const content = renderer(req, store, context)
-
+        const content = renderer(req, store, context) 
+               
         if (context.url) return res.redirect(301, context.url)
         if (context.notFound) res.status(404)
         res.send(content)
     })
-})
+}
 
+const app = express()
+app.use(compression())
+app.use(express.static('assets'))
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', proxyOptions))
+app.get('*', handleRequestWithReactRouter)
 app.listen(3000, () => console.log('Listening on port 3000'))

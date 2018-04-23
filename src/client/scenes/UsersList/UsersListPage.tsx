@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '@services/ListAPI/listActions'
 import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '@types'
@@ -11,7 +11,7 @@ interface IProps extends IStoreProps {
     readonly users: Persons
 }
 
-class UsersList extends PureComponent<IProps> {
+class UsersList extends Component<IProps> {
     componentDidMount() {
         this.props.fetchUsers()
     }
@@ -39,7 +39,7 @@ class UsersList extends PureComponent<IProps> {
         return (
             <div>
                 {this.head()}
-                Here's a big list of users:
+                <h3>Here's a big list of users:</h3>
                 <ul className={s.personsList}>{this.renderUsers()}</ul>
             </div>
         )

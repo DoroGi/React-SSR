@@ -1,4 +1,5 @@
 const { CheckerPlugin } = require('awesome-typescript-loader')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpackNodeExternals = require('webpack-node-externals')
 const modules = require('./webpack.modules')
 const path = require('path')

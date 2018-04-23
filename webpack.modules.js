@@ -1,18 +1,4 @@
 const path = require('path')
-const postCSSConfig = require('./postcss.config')
-
-const styleLoader = { loader: 'style-loader'}
-const isomorphicStyleLoader = { loader: 'isomorphic-style-loader' }
-const sassLoader = { loader: 'sass-loader' }
-const cssLoader = {
-    loader: 'css-loader',
-    options: {
-        modules: true,
-        importLoaders: 1,
-        localIdentName: '[name]__[local]___[hash:base64:5]',
-        sourceMap: true
-    }
-}
 
 const typescriptLoader = {
     test: /\.tsx?$/,
@@ -49,12 +35,13 @@ const targetModules = {
     server: [
         {
             test: /\.css$/,
-            loaders: [
+            include: path.resolve('./src/client'),
+            use: [
                 'isomorphic-style-loader',
                 {
                     loader: 'css-loader',
                     options: {
-                        modules: true,
+                        modules: true,                        
                         importLoaders: 1,
                         localIdentName: '[local]___[hash:base64:5]'
                     }
