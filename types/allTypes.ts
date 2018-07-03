@@ -21,7 +21,7 @@ export { default as IStoreState } from '../src/app/state/store/IStoreState'
 export type IStoreProps = IStoreState
 export type StoreBuilder = (req: Request) => Store<{}>
 export type Action = { readonly type: string, readonly payload: AxiosResponse }
-export type ActionCreator = () => (dispatch: Dispatch<Action>, getState: () => IStoreState, api: AxiosInstance) => Promise<void>
+export type ActionCreator = () => (dispatch: Dispatch<Action>, getState: () => IStoreState, api: AxiosInstance) => void
 
 // Custom types
 export type GoogleUser = { readonly _id: string, readonly googleId: string, readonly v: number } | null

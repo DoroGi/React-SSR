@@ -1,3 +1,17 @@
-export const FETCH_USERS: string = 'fetch_users'
-export const FETCH_ADMINS: string = 'fetch_admins'
-export const FETCH_CURRENT_USER: string = 'fetch_current_user'
+import { AxiosResponse } from '@types'
+import types from './types'
+
+const fetchUsers: any = (res: AxiosResponse) => ({
+    type: types.FETCH_USERS,
+    payload: res
+})
+
+const fetchAdmins: any = (res: AxiosResponse) => ({
+    type: types.FETCH_ADMINS,
+    payload: res
+})
+
+export default {
+    fetchUsers,
+    fetchAdmins
+}
