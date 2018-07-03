@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { renderRoutes } from 'react-router-config'
 import serialize from 'serialize-javascript'
 import { Helmet } from 'react-helmet'
-import Routes from './client/Routes'
-import IStoreState from '@helpers/store/IStoreState'
+import Routes from '@routes'
+import IStoreState from '@state/store/IStoreState'
 import { Context, Request, Store } from '@types'
 
 type RendererType = (req: Request, store: Store<IStoreState>, context: Context) => string

@@ -8,9 +8,9 @@ const commonConf = {
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
-            '@helpers': path.resolve(__dirname, 'src/helpers'),
-            '@types': path.resolve(__dirname, 'src/helpers/allTypes'),
-            '@services': path.resolve(__dirname, 'src/client/services')
+            '@routes': path.resolve(__dirname, 'src/app/routes'),
+            '@types': path.resolve(__dirname, 'types/allTypes'),
+            '@state': path.resolve(__dirname, 'src/app/state'),
         }
     },
     node: {
@@ -46,7 +46,7 @@ const targetConfigs = {
     server: {
         name: 'Server',
         target: 'node',
-        entry: './src/index.ts',
+        entry: './src/server/index.ts',
         output: {
             filename: 'server.js',
             path: __dirname + '/build'

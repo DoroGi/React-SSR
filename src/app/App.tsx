@@ -1,7 +1,7 @@
 import React, { SFC } from 'react'
 import { renderRoutes, RouteConfig } from 'react-router-config'
-import Header from '../components/Header'
-import { fetchCurrentUser } from '@services/UserAPI/userActions'
+import Header from './components/organisms/Header'
+import { fetchCurrentUser } from '@state/ducks/list/UserAPI/userActions'
 import { Store, IStoreState, DataRoute } from '@types';
 
 type IProps = { route: RouteConfig }

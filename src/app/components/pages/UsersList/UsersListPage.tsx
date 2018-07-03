@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '@services/ListAPI/listActions'
+import { fetchUsers } from '@state/ducks/list/ListAPI/listActions'
 import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '@types'
 import { Helmet } from 'react-helmet'
-
-const s = require('./style.css')
 
 interface IProps extends IStoreProps {
     readonly fetchUsers: ActionCreator,
@@ -40,7 +38,7 @@ class UsersList extends Component<IProps> {
             <div>
                 {this.head()}
                 <h3>Here's a big list of users:</h3>
-                <ul className={s.personsList}>{this.renderUsers()}</ul>
+                <ul>{this.renderUsers()}</ul>
             </div>
         )
     }

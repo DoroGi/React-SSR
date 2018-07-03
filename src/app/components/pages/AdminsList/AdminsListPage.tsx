@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { fetchAdmins } from '@services/ListAPI/listActions'
-import requireAuth from '../../components/hocs/requireAuth'
+import { fetchAdmins } from '@state/ducks/list/ListAPI/listActions'
+import requireAuth from '../../hocs/requireAuth'
 import { IStoreProps, IStoreState, Persons, DataRoute, ActionCreator, Store } from '@types'
 
 interface IProps extends IStoreProps {

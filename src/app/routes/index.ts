@@ -1,8 +1,8 @@
-import App from './scenes/App'
-import HomePage from './scenes/Home/HomePage'
-import UsersListPage from './scenes/UsersList/UsersListPage'
-import NotFoundPage from './scenes/NotFound/NotFoundPage'
-import AdminsListPage from './scenes/AdminsList/AdminsListPage'
+import App from '../App'
+import HomePage from '../components/pages/Home/HomePage'
+import UsersListPage from '../components/pages/UsersList/UsersListPage'
+import NotFoundPage from '../components/pages/NotFound/NotFoundPage'
+import AdminsListPage from '../components/pages/AdminsList/AdminsListPage'
 import { DataRoute } from '@types'
 
 export default [{
