@@ -17,7 +17,7 @@ const autorized: HOC = ChildComponent => {
         }
     }
 
-    const mapStateToProps = ({ user }: IStoreProps) => { return { user } }
+    const mapStateToProps = ({ user }: IStoreProps) => ({ user })
 
     return connect(mapStateToProps)(RequireAuth)
 }

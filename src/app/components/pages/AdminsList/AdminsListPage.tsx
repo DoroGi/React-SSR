@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { fetchAdmins } from '@state/ducks/list/ListAPI/listActions'
+import { listOperations } from '@state/ducks/list'
 import requireAuth from '../../hocs/requireAuth'
-import { IStoreProps, IStoreState, Persons, DataRoute, ActionCreator, Store } from '@types'
+import { IStoreProps, Persons, ActionCreator, DataRoute } from '@types'
 
 interface IProps extends IStoreProps {
     readonly fetchAdmins: ActionCreator,
@@ -30,9 +30,9 @@ class AdminsListPage extends PureComponent<IProps> {
     }
 }
 
-const mapStateToProps = ({ admins }: IStoreProps) => { return { admins } }
+const mapStateToProps = ({ admins }: IStoreProps) => ({ admins })
 
 export default {
-    component: connect(mapStateToProps, { fetchAdmins })(requireAuth(AdminsListPage)),
-    loadData: ({ dispatch }: Store<IStoreState>) => dispatch(fetchAdmins())
+    component: connect(mapStateToProps, { fetchAdmins: listOperations.fetchAdmins } )(requireAuth(AdminsListPage)),
+    loadData: listOperations.fetchAdmins
 } as DataRoute

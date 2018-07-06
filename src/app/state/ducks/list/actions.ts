@@ -1,12 +1,12 @@
-import { AxiosResponse } from '@types'
+import { ActionFiller } from '@types'
 import types from './types'
 
-const fetchUsers: any = (res: AxiosResponse) => ({
+const fetchUsers: ActionFiller = res => ({
     type: types.FETCH_USERS,
     payload: res
 })
 
-const fetchAdmins: any = (res: AxiosResponse) => ({
+const fetchAdmins: ActionFiller = res => ({
     type: types.FETCH_ADMINS,
     payload: res
 })

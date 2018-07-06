@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchUsers } from '@state/ducks/list/ListAPI/listActions'
-import { Store, IStoreState, IStoreProps, Persons, DataRoute, ActionCreator } from '@types'
+import { listOperations } from '@state/ducks/list'
+import { IStoreProps, Persons, ActionCreator, DataRoute } from '@types'
 import { Helmet } from 'react-helmet'
 
 interface IProps extends IStoreProps {
@@ -47,6 +47,6 @@ class UsersList extends Component<IProps> {
 const mapStateToProps = ({ users }: IStoreProps) => ({ users })
 
 export default {
-    component: connect(mapStateToProps, { fetchUsers })(UsersList),
-    loadData: ({ dispatch }: Store<IStoreState>) => dispatch(fetchUsers())    
+    component: connect(mapStateToProps, { fetchUsers: listOperations.fetchUsers })(UsersList),
+    loadData: listOperations.fetchUsers
 } as DataRoute

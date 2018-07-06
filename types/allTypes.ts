@@ -13,7 +13,7 @@ export type HOC = (InnerComponent: React.ComponentClass<any>) => React.Component
 export type Context = { notFound?: boolean, url?: string }
 
 // React Router
-export interface DataRoute extends RouteConfig { readonly loadData?: any, readonly routes?: Array<DataRoute> }
+export interface DataRoute extends RouteConfig { readonly loadData?: Function, readonly routes?: Array<DataRoute> }
 
 // Redux
 export { Store, Dispatch, Reducer } from 'redux'
@@ -21,7 +21,8 @@ export { default as IStoreState } from '../src/app/state/store/IStoreState'
 export type IStoreProps = IStoreState
 export type StoreBuilder = (req: Request) => Store<{}>
 export type Action = { readonly type: string, readonly payload: AxiosResponse }
-export type ActionCreator = () => (dispatch: Dispatch<Action>, getState: () => IStoreState, api: AxiosInstance) => void
+export type ActionFiller = (data: AxiosResponse) => Action
+export type ActionCreator = () => (dispatch: Dispatch, getState: () => IStoreState, api: AxiosInstance) => void
 
 // Custom types
 export type GoogleUser = { readonly _id: string, readonly googleId: string, readonly v: number } | null

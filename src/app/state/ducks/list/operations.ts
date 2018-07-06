@@ -1,16 +1,14 @@
 import actions from './actions'
 import { AxiosResponse, ActionCreator } from '@types';
 
-const fetchUsers: ActionCreator = () => (dispatch, _getState, api) => {
-    api.get('/users')
-        .then((res: AxiosResponse) => dispatch(actions.fetchUsers(res)))
-        .catch(() => console.log('ERROR DURING FETCHUSERS!!!'))
+const fetchUsers: ActionCreator = () => async (dispatch, _getState, api) => {
+    const res: AxiosResponse = await api.get('/users')
+    dispatch(actions.fetchUsers(res))
 }
 
-const fetchAdmins: ActionCreator = () => (dispatch, _getState, api) => {
-    api.get('/admins')
-        .then((res: AxiosResponse) => dispatch(actions.fetchAdmins(res)))
-        .catch(() => console.log('ERROR DURING FETCHADMINS!!!'))
+const fetchAdmins: ActionCreator = () => async (dispatch, _getState, api) => {
+    const res: AxiosResponse = await api.get('/admins')
+    dispatch(actions.fetchAdmins(res))
 }
 
 export default {

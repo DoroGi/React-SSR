@@ -1,5 +1,5 @@
 declare module 'express-http-proxy'
 
 interface Window {
-    INITIAL_STATE: string
+    INITIAL_STATE: any
 }

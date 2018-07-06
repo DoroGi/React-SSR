@@ -1,10 +1,10 @@
 import express from 'express'
 import compression from 'compression'
-import { matchRoutes, MatchedRoute } from 'react-router-config'
+import { matchRoutes } from 'react-router-config'
 import proxy from 'express-http-proxy'
-import Routes from '@routes'
+import routes from '@routes'
 import { createStore } from '@state/store'
-import { Context, DataRoute, Store, IStoreState } from '@types'
+import { Context, Store, IStoreState, Dispatch, DataRoute } from '@types'
 import renderer from './renderer'
 
 const proxyOptions = {
@@ -14,30 +14,23 @@ const proxyOptions = {
     }
 }
 
-type DataFetcher = (store: Store<IStoreState>) => (route: MatchedRoute<{}>) => any
-const getPrefetchFunctions: DataFetcher = (store) => ({ route }) => {
-    const dataRoute = <DataRoute>route
-    return dataRoute.loadData ? dataRoute.loadData(store) : null
+const prefetchAllData = (path: string, dispatch: Dispatch ) => {
+    const promises =
+        matchRoutes(routes, path)
+            .map(({route}) => (<DataRoute> route).loadData)
+            .filter((prefetch: Function | undefined): prefetch is Function => prefetch !== undefined)
+            .map(prefetch => new Promise((resolve: Function) => dispatch(prefetch()).then(resolve).catch(resolve)))
+    return Promise.all(promises)
 }
 
-type PromiseFilter = (promise: Promise<{}>) => boolean
-const componentThatDoesNotNeedData: PromiseFilter = promise => promise!==null
-
-type PromiseWrapper = (promise: Promise<{}>) => Promise<{}>
-const wrapAllPromisesInAPromise: PromiseWrapper = promise => new Promise(resolve => { promise.then(resolve).catch(resolve)})
-
-type PromiseGetter = (req: express.Request, store: Store<IStoreState>) => Promise<{}>[]
-const getDataPromises: PromiseGetter = (req, store) =>
-    matchRoutes(Routes, req.path)
-    .map(getPrefetchFunctions(store))
-    .filter(componentThatDoesNotNeedData)
-    .map(wrapAllPromisesInAPromise)
-
-const handleRequestWithReactRouter = (req: express.Request, res: express.Response) => {
+const app = express()
+app.use(compression())
+app.use(express.static('assets'))
+app.use('/api', proxy('http://react-ssr-api.herokuapp.com', proxyOptions))
+app.get('*', (req: express.Request, res: express.Response) => {
     const store = createStore(req) as Store<IStoreState>
-    const dataPromises = getDataPromises(req, store)
-
-    Promise.all(dataPromises).then(() => {
+    prefetchAllData(req.path, store.dispatch)
+    .then(() => {
         const context: Context = {}
         const content = renderer(req, store, context) 
                
@@ -45,11 +38,6 @@ const handleRequestWithReactRouter = (req: express.Request, res: express.Respons
         if (context.notFound) res.status(404)
         res.send(content)
     })
-}
-
-const app = express()
-app.use(compression())
-app.use(express.static('assets'))
-app.use('/api', proxy('http://react-ssr-api.herokuapp.com', proxyOptions))
-app.get('*', handleRequestWithReactRouter)
+    .catch((err)=> console.log(err))
+})
 app.listen(3000, () => console.log('Listening on port 3000'))

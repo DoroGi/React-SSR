@@ -17,5 +17,5 @@ const App: SFC<IProps> = ({ route }) => {
 
 export default {
     component: App,
-    loadData: () => authOperations.fetchCurrentUser()
+    loadData: authOperations.fetchCurrentUser
 } as DataRoute

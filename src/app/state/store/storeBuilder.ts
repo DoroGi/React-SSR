@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import axios from 'axios'
-import reducers from '@state/ducks/list/reducers'
+import rootReducer from '@state/ducks'
 import { StoreBuilder } from '@types';
 
 const createStoreWithMiddleware: StoreBuilder = req => {
@@ -9,8 +9,7 @@ const createStoreWithMiddleware: StoreBuilder = req => {
         baseURL: 'http://react-ssr-api.herokuapp.com',
         headers: { cookie: req.get('cookie') || '' }
     })
-
-    return createStore(reducers, {}, applyMiddleware(thunk.withExtraArgument(axiosInstance)))
+    return createStore(rootReducer, {}, applyMiddleware(thunk.withExtraArgument(axiosInstance)))
 }
 
 export default createStoreWithMiddleware

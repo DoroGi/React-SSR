@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux'
-
 import { Persons, Reducer } from '@types'
 
 import types from './types'
 
-export const adminsReducer: Reducer<Persons> = (state = [], action) => {
+const adminsReducer: Reducer<Persons> = (state = [], action) => {
     switch (action.type) {
         case types.FETCH_ADMINS:
             return action.payload.data
@@ -13,7 +11,7 @@ export const adminsReducer: Reducer<Persons> = (state = [], action) => {
     }
 }
 
-export const usersReducer: Reducer<Persons> = (state = [], action) => {
+const usersReducer: Reducer<Persons> = (state = [], action) => {
     switch (action.type) {
         case types.FETCH_USERS:
             return action.payload.data
@@ -22,7 +20,7 @@ export const usersReducer: Reducer<Persons> = (state = [], action) => {
     }
 }
 
-export default combineReducers({
+export default {
     users: usersReducer,
     admins: adminsReducer
-})
+}

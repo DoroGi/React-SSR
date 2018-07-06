@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux'
-
 import { GoogleUser, Reducer } from '@types'
 
 import types from './types'
 
-export const userReducer: Reducer<GoogleUser> = (state = null, action) => {
+const userReducer: Reducer<GoogleUser> = (state = null, action) => {
     switch (action.type) {
         case types.FETCH_CURRENT_USER:
             return action.payload.data || false
@@ -13,6 +11,4 @@ export const userReducer: Reducer<GoogleUser> = (state = null, action) => {
     }
 }
 
-export default combineReducers({
-    user: userReducer
-})
+export default { user: userReducer }
