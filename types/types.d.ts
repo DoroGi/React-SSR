@@ -1,5 +1,8 @@
-declare module 'express-http-proxy'
+import { DeepPartial } from 'redux'
+import { IStoreState } from '@types'
 
-interface Window {
-    INITIAL_STATE: any
+declare global {
+    interface Window {
+        INITIAL_STATE: DeepPartial<IStoreState>
+    }
 }

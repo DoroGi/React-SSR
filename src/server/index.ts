@@ -1,17 +1,17 @@
 import express from 'express'
 import compression from 'compression'
 import { matchRoutes } from 'react-router-config'
-import proxy from 'express-http-proxy'
+import proxy, { Config } from 'http-proxy-middleware'
 import routes from '@routes'
 import { createStore } from '@state/store'
 import { Context, Store, IStoreState, Dispatch, DataRoute } from '@types'
 import renderer from './renderer'
 
-const proxyOptions = {
-    proxyReqOptDecorator(opts: any) {
-        opts.headers['x-forwarded-host'] = 'localhost:3000'
-        return opts
-    }
+const proxyToHeroku: Config = { 
+    target: 'http://react-ssr-api.herokuapp.com',
+    changeOrigin: true,
+    onProxyReq: proxyReq => { proxyReq.setHeader('x-forwarded-host', 'localhost:3000') },
+    pathRewrite: { '^/api':'' },
 }
 
 const prefetchAllData = (path: string, dispatch: Dispatch ) => {
@@ -26,7 +26,7 @@ const prefetchAllData = (path: string, dispatch: Dispatch ) => {
 const app = express()
 app.use(compression())
 app.use(express.static('assets'))
-app.use('/api', proxy('http://react-ssr-api.herokuapp.com', proxyOptions))
+app.use('/api', proxy('/api', proxyToHeroku))
 app.get('*', (req: express.Request, res: express.Response) => {
     const store = createStore(req) as Store<IStoreState>
     prefetchAllData(req.path, store.dispatch)
