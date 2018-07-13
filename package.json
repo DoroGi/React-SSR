@@ -5,7 +5,7 @@
   "version": "3.1.0",
   "description": "Server side rendering project",
   "engines": {
-    "node": ">=8.6"
+    "node": ">=8.11"
   },
   "main": "index.ts",
   "scripts": {
@@ -21,8 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "0.18.0",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
     "react-helmet": "5.2.0",
     "react-redux": "5.0.7",
     "react-router": "4.3.1",
@@ -39,7 +39,7 @@
     "@types/react": "16.4.6",
     "@types/react-dom": "16.0.6",
     "@types/react-helmet": "5.0.6",
-    "@types/react-redux": "6.0.3",
+    "@types/react-redux": "6.0.4",
     "@types/react-router": "4.0.28",
     "@types/react-router-config": "1.0.7",
     "@types/react-router-dom": "4.2.7",
@@ -57,16 +57,16 @@
     "express": "4.16.3",
     "http-proxy-middleware": "0.18.0",
     "isomorphic-style-loader": "4.0.0",
-    "nodemon": "1.17.5",
+    "nodemon": "1.18.1",
     "postcss-initial": "2.0.0",
-    "postcss-loader": "2.1.5",
+    "postcss-loader": "2.1.6",
     "postcss-nested": "3.0.0",
     "redux-devtools-extension": "2.13.5",
     "source-map-loader": "0.2.3",
     "style-loader": "0.21.0",
     "typescript": "2.9.2",
     "uglifyjs-webpack-plugin": "1.2.7",
-    "webpack": "4.15.1",
+    "webpack": "4.16.0",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "3.0.8",
     "webpack-node-externals": "1.7.2",
