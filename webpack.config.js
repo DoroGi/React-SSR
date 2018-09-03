@@ -1,10 +1,8 @@
-const { CheckerPlugin } = require('awesome-typescript-loader')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const webpackNodeExternals = require('webpack-node-externals')
-const modules = require('./webpack.modules')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path')
 
-const commonConf = {
+const config = {
+    name: 'Client',
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
@@ -13,60 +11,61 @@ const commonConf = {
             '@state': path.resolve(__dirname, 'src/app/state'),
         }
     },
-    node: {
-        fs: 'empty'
-    }
- }
-const targetConfigs = {
-    client: {
-        name: 'Client',
-        entry: {
-            client: ['./src/client/client.tsx'],
-            vendor: [
-                'axios',
-                'isomorphic-style-loader',
-                'react',
-                'react-dom',
-                'react-helmet',
-                'react-redux',
-                'react-router',
-                'react-router-config',
-                'react-router-dom',
-                'redux',
-                'redux-thunk',
-                'serialize-javascript',
-                'style-loader'
-            ]
-        },
-        output: {
-            filename: '[name].js',
-            path: __dirname + '/assets'
-        }
+    entry: {
+        client: ['./src/client/client.tsx'],
+        vendor: [
+            'axios',
+            'react',
+            'react-dom',
+            'react-helmet',
+            'react-redux',
+            'react-router',
+            'react-router-config',
+            'react-router-dom',
+            'redux',
+            'redux-thunk',
+            'serialize-javascript',
+        ]
     },
-    server: {
-        name: 'Server',
-        target: 'node',
-        entry: './src/server/index.ts',
-        output: {
-            filename: 'server.js',
-            path: __dirname + '/build'
-        },
-        externals: [webpackNodeExternals()]
+    output: {
+        filename: '[name].js',
+        path: __dirname + '/assets'
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }, 
+            {
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[hash:8]'
+                        }
+                    },
+                    'postcss-loader'
+                ]
+            }
+        ]
     }
 }
 
-const createConf = target => {
-    
-    const byTarget = target => targetConfigs[target] || {}
-    
-    return {
-    ...commonConf,
-    ...byTarget(target),
-    plugins: [
-        //new BundleAnalyzerPlugin({analyzerMode: 'static'}),
-        new CheckerPlugin()
-    ],
-    module: { rules: modules(target) }
-}}
-
-module.exports = ['client', 'server'].map(createConf)
+module.exports = config;

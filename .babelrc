@@ -1,6 +1,31 @@
 {
     "presets": [
-        "react",
-        ["env", { "targets": { "browsers": ["last 2 versions"] }}]
+        ["@babel/env", { "targets": { "node": "8" }}],
+        "@babel/react",
+        "@babel/typescript"
+    ],
+    "env": {
+        "server": {
+            "plugins": [
+                [
+                    "css-modules-transform", {
+                        "generateScopedName": "[hash:8]",
+                        "extensions": [".css"]
+                    }
+                ]
+            ]
+        }
+    },
+    "plugins": [
+        [  
+            "module-resolver", {
+                "root": ["."],
+                "alias": {
+                    "@routes": "./src/app/routes/index",
+                    "@types": "./types/allTypes.ts",
+                    "@state": "./src/app/state"
+                }
+            }
+        ]
     ]
 }

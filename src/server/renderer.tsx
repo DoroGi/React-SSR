@@ -21,13 +21,13 @@ const renderer: RendererType = ({ path }, store, context) => {
     )
     
     const helmet = Helmet.renderStatic()
-//    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     return `
     <html>
         <head>
             ${helmet.title.toString()}
             ${helmet.meta.toString()}
+            <link rel="stylesheet" href="client.css">
         </head>
         <body>
             <div id="root">${content}</div>

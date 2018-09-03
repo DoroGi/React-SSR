@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { IStoreProps } from '@types'
 
-//const s = require('./style.css')
+import s from './style.css'
 
 const Header: SFC<IStoreProps> = ({ user }) => {
     const authButton: JSX.Element = user ? (
@@ -13,7 +13,7 @@ const Header: SFC<IStoreProps> = ({ user }) => {
     )
 
     return (
-        <nav>
+        <nav className={s.nav}>
             <Link to="/">
             Vortigaunt
             </Link>
