@@ -6,17 +6,13 @@ import { IStoreProps } from '@types'
 import s from './style.css'
 
 const Header: SFC<IStoreProps> = ({ user }) => {
-    const authButton: JSX.Element = user ? (
-        <a href="/api/logout">Logout</a>
-    ) : (
-        <a href="/api/auth/google">Login</a>
-    )
+    const authButton: JSX.Element = user
+        ? <a href="/api/logout">Logout</a>
+        : <a href="/api/auth/google">Login</a>
 
     return (
         <nav className={s.nav}>
-            <Link to="/">
-            Vortigaunt
-            </Link>
+            <Link to="/">Vortigaunt</Link>
             <ul>
                 <li>
                     <Link to="/users">Users</Link>
