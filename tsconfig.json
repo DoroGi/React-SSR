@@ -25,9 +25,5 @@
         //"strictFunctionTypes": true,
         //"strict": true
     },
-    "include": [ "src", "types" ],
-    "awesomeTypescriptLoaderOptions": {
-        "useCache": true,
-        "useBabel": true
-    }
+    "include": [ "src", "types" ]
 }

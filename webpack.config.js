@@ -54,9 +54,10 @@ const config = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
-                        loader: 'css-loader',
+                        loader: 'typings-for-css-modules-loader',
                         options: {
                             modules: true,
+                            namedExport: true,
                             importLoaders: 1,
                             localIdentName: '[hash:8]'
                         }
