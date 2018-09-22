@@ -7,7 +7,7 @@ import { createStore } from '@state/store'
 import { Context, Store, IStoreState, Dispatch, DataRoute } from '@types'
 import renderer from './renderer'
 
-const proxyToHeroku: Config = { 
+const proxyToHeroku: Config = {
     target: 'http://react-ssr-api.herokuapp.com',
     changeOrigin: true,
     onProxyReq: proxyReq => { proxyReq.setHeader('x-forwarded-host', 'localhost:3000') },
@@ -32,8 +32,8 @@ app.get('*', (req: express.Request, res: express.Response) => {
     prefetchAllData(req.path, store.dispatch)
     .then(() => {
         const context: Context = {}
-        const content = renderer(req, store, context) 
-               
+        const content = renderer(req, store, context)
+
         if (context.url) return res.redirect(301, context.url)
         if (context.notFound) res.status(404)
         res.send(content)

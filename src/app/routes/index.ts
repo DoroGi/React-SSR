@@ -14,11 +14,11 @@ export default [{
             exact: true
         },
         {
-            ...AdminsListPage,            
+            ...AdminsListPage,
             path: '/admins'
         },
         {
-            ...UsersListPage,            
+            ...UsersListPage,
             path: '/users'
         },
         {

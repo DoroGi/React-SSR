@@ -14,12 +14,12 @@ type RendererType = (req: Request, store: Store<IStoreState>, context: Context) 
 const renderer: RendererType = ({ path }, store, context) => {
     const content = renderToString(
         <Provider store={store}>
-            <StaticRouter location={path} context={context}> 
+            <StaticRouter location={path} context={context}>
                 <div>{renderRoutes(Routes)}</div>
             </StaticRouter>
         </Provider>
     )
-    
+
     const helmet = Helmet.renderStatic()
 
     return `
@@ -34,7 +34,7 @@ const renderer: RendererType = ({ path }, store, context) => {
             <script>
                 window.INITIAL_STATE = ${serialize(store.getState())}
             </script>
-            <script src="vendor.js"></script>            
+            <script src="vendor.js"></script>
             <script src="client.js"></script>
         </body>
     </html>
