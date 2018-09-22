@@ -1,29 +1,29 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@routes": [ "src/app/routes/index" ],
-            "@types": [ "types/allTypes" ],
-            "@state/*": ["src/app/state/*"]
-        },
-        "lib": ["es6", "dom"],
-        "jsx": "react",
-        "moduleResolution": "Node",
-        "outDir": "DIRECTORY",
-        "target": "ES5",                        // specify ECMAScript target version 
-        "module": "ES6",                        // specifiy module code generation
-        "sourceMap": true,                      // allow sourcemap support
-        "allowSyntheticDefaultImports": true,
-        "strictNullChecks": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "noImplicitAny": true,
-        "alwaysStrict": true,
-        "strictPropertyInitialization": true,
-        //"strictFunctionTypes": true,
-        //"strict": true
-    },
-    "include": [ "src", "types" ]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@routes": ["src/app/routes/index"],
+			"@types": ["types/allTypes"],
+			"@state/*": ["src/app/state/*"]
+		},
+		"lib": ["es6", "dom"],
+		"jsx": "react",
+		"moduleResolution": "Node",
+		"outDir": "DIRECTORY",
+		"target": "ES5", 						// specify ECMAScript target version
+		"module": "ES6", 						// specifiy module code generation
+		"sourceMap": true,						// allow sourcemap support
+		"allowSyntheticDefaultImports": true,
+		"strictNullChecks": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedParameters": true,
+		"noUnusedLocals": true,
+		"noImplicitAny": true,
+		"alwaysStrict": true,
+		"strictPropertyInitialization": true
+		//"strictFunctionTypes": true,
+		//"strict": true
+	},
+	"include": ["src", "types"]
 }

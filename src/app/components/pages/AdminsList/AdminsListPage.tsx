@@ -13,7 +13,7 @@ class AdminsListPage extends PureComponent<IProps> {
     componentDidMount() {
         this.props.fetchAdmins()
     }
-    
+
     renderAdmins() {
         return this.props.admins.map(admin => {
             return <li key={admin.id}>{admin.name}</li>
