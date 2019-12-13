@@ -15,7 +15,7 @@
     "dev:build": "webpack --mode development --watch",
     "dev:server": "nodemon -e ts,tsx --exec \"BABEL_ENV=server babel-node src/server --extensions '.ts,.tsx'\"",
     "prod:build:client": "webpack -p",
-    "prod:build:server": "BABEL_ENV=server babel src -d build --extensions '.ts,.tsx'",
+    "prod:build:server": "cross-env BABEL_ENV=server babel src -d build --extensions '.ts,.tsx'",
     "start": "node build/server"
   },
   "author": "Dorus",
